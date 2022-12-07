@@ -129,7 +129,7 @@ public class Main {
 			String hora;
 			
 			int aviaoOpc = 0;
-			int i = 0;
+			int i = 1;
 			String message = "";
 			
 			if(Main.avioes.isEmpty()) {
@@ -142,7 +142,7 @@ public class Main {
 				i++;
 			}
 			
-			aviaoOpc = Integer.parseInt(JOptionPane.showInputDialog("Digite o Nº da aeronave:\n" + message));
+			aviaoOpc = Integer.parseInt(JOptionPane.showInputDialog("Digite o Nº da aeronave:\n" + message)) - 1;
 			
 			aviaoVoo = (Aviao) Main.avioes.get(aviaoOpc);
 			
@@ -163,7 +163,7 @@ public class Main {
 			String nome;
 			String cpf;
 			String message = "";
-			int i = 0;
+			int i = 1;
 			int numeroVoo;
 			Aviao aviaoVoo;
 			int qntLugaresVazios = 0;
@@ -185,7 +185,7 @@ public class Main {
 				i++;
 			}
 			
-			numeroVoo = Integer.parseInt(JOptionPane.showInputDialog("Digite o Nº do Voo:\n" + message));
+			numeroVoo = Integer.parseInt(JOptionPane.showInputDialog("Digite o Nº do Voo:\n" + message)) - 1;
 			
 			aviaoVoo = Main.avioes.get(numeroVoo);
 			
@@ -195,13 +195,13 @@ public class Main {
 				}
 			}
 			
-			if (qntLugaresVazios != 0) {
+			if (qntLugaresVazios == 0) {
 				JOptionPane.showConfirmDialog(null, "Não há lugares nesse Voo!", "", JOptionPane.DEFAULT_OPTION);
 				reservaPassagensMenu();
 			}
 			
-			fileira = Integer.parseInt(JOptionPane.showInputDialog("Digite o Nº da fileira (até " + aviaoVoo.getFileira() + "):"));
-			assento = Integer.parseInt(JOptionPane.showInputDialog("Digite o Nº do assento (até " + aviaoVoo.getAssentos() + "):"));
+			fileira = Integer.parseInt(JOptionPane.showInputDialog("Digite o Nº da fileira (até " + aviaoVoo.getFileira() + "):")) - 1;
+			assento = Integer.parseInt(JOptionPane.showInputDialog("Digite o Nº do assento (até " + aviaoVoo.getAssentos() + "):")) - 1;
 			
 			if(fileira > aviaoVoo.getFileira() || assento > aviaoVoo.getAssentos()) {
 				JOptionPane.showConfirmDialog(null, "Fileira ou assento inválido!", "", JOptionPane.DEFAULT_OPTION);
@@ -224,7 +224,7 @@ public class Main {
 			int numeroVoo;
 			Aviao aviaoVoo;
 			int qntLugaresVazios = 0;
-			int i = 0;
+			int i = 1;
 			
 			if(Main.voos.isEmpty()) {
 				JOptionPane.showConfirmDialog(null, "É necessário cadastrar um voo!", "", JOptionPane.DEFAULT_OPTION);
@@ -236,7 +236,7 @@ public class Main {
 				i++;
 			}
 			
-			numeroVoo = Integer.parseInt(JOptionPane.showInputDialog("Digite o Nº do Voo:\n" + message));
+			numeroVoo = Integer.parseInt(JOptionPane.showInputDialog("Digite o Nº do Voo:\n" + message)) - 1;
 			
 			aviaoVoo = Main.avioes.get(numeroVoo);
 			
@@ -258,7 +258,7 @@ public class Main {
 			String table = "";
 			int numeroVoo;
 			Aviao aviaoVoo;
-			int i = 0;
+			int i = 1;
 			
 			if(Main.voos.isEmpty()) {
 				JOptionPane.showConfirmDialog(null, "É necessário cadastrar um voo!", "", JOptionPane.DEFAULT_OPTION);
@@ -270,17 +270,17 @@ public class Main {
 				i++;
 			}
 			
-			numeroVoo = Integer.parseInt(JOptionPane.showInputDialog("Digite o Nº do Voo:\n" + message));
+			numeroVoo = Integer.parseInt(JOptionPane.showInputDialog("Digite o Nº do Voo:\n" + message)) - 1;
 			
 			aviaoVoo = Main.avioes.get(numeroVoo);
 			
-			for(int j = 0; j < aviaoVoo.getFileira(); j++) {
+			for(int j = 1; j <= aviaoVoo.getFileira(); j++) {
 				table += "Fileira " + j + " ";
 				for(int k = 0; k < aviaoVoo.getAssentos(); k++) {
-					if(aviaoVoo.verificaLugarOcupado(j, k)) {
+					if(aviaoVoo.verificaLugarOcupado(j-1, k)) {
 						table += "[X] ";
 					}else {
-						table += "["+ k +"] ";
+						table += "[_] ";
 					}
 				}
 				table += "\n";
